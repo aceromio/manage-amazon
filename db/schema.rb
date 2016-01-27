@@ -11,7 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160126075517) do
+ActiveRecord::Schema.define(version: 20160127091059) do
+
+  create_table "asins", force: :cascade do |t|
+    t.string   "asin"
+    t.string   "weight"
+    t.string   "length"
+    t.string   "width"
+    t.string   "height"
+    t.string   "jan"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "asins", ["asin"], name: "index_asins_on_asin", unique: true
+
+  create_table "orders", force: :cascade do |t|
+    t.string   "order_id"
+    t.string   "sku"
+    t.string   "asin"
+    t.string   "sold_price"
+    t.string   "fee"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "orders", ["order_id"], name: "index_orders_on_order_id", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -19,8 +44,9 @@ ActiveRecord::Schema.define(version: 20160126075517) do
     t.string   "role"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "email"
+    t.string   "prefecture"
+    t.string   "phone"
   end
-
-  add_index "users", ["name"], name: "index_users_on_name", unique: true
 
 end

@@ -6,8 +6,6 @@ class CreateUsers < ActiveRecord::Migration
       t.string :role
 
       t.timestamps null: false
-      
-      t.index :name, unique: true
     end
   end
 end
