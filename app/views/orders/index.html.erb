@@ -1,0 +1,102 @@
+<%= form_for :orders, url: update_all_orders_path, method: 'patch' do |f| %>
+  <%= select_tag 'shipping_way',options_for_select(['小型SAL','SAL','Pメール','Dメール','EMS']) %>
+  <%= text_field_tag 'shipping_fee' %>
+　<%= f.submit "配送", class: "btn btn-large btn-primary" %>
+　<% if current_user.orders.any? %>
+      <ol class="orders">
+      <div  class="tabele-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>日付</th>
+            <th>order_id</th>
+            <th>国</th>
+            <th>SKU</th>
+            <th>ASIN</th>
+            <th>商品名</th>
+            <th>販売個数</th>
+            <th>売上</th>
+            <th>手数料</th>
+            <th>入金額</th>
+            <th>仕入れ</th>
+            <th>粗利益</th>
+            <th>送料</th>
+            <th>利益率</th>
+            <th>出荷</th>
+          </tr>
+        </thead>
+        <% @orders.each do |order| %>
+        <tbody>
+          <tr>
+            <td><%= order.created_at %></td>
+            <td><%= order.order_id %></td>
+            <td><%= order.country %></td>
+            <td><%= order.sku %></td>
+            <td><%= Asin.find_by(sku: order.sku).asin %></td>
+            <td><%= Asin.find_by(sku: order.sku).title %></td>
+            <td><%= order.volume %></td>
+            <td><%= order.sold_price %></td>
+            <td><%= order.fee %></td>
+            <td><%= order.sold_price.to_f+order.fee.to_f %></td>
+            <td><%=  %></td>
+            <td><%= order.fee %></td>
+            <td><%=  %></td>
+            <td><%= order.fee %></td>
+            <td><%= check_box_tag "order_ids[]",order.id %></td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+  　　</div>
+      </ol>
+    <% end %>
+  </div>
+</div>
+<% end %>
+　<% if current_user.orders.any? %>
+      <ol class="orders">
+      <div  class="tabele-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>日付</th>
+            <th>order_id</th>
+            <th>国</th>
+            <th>SKU</th>
+            <th>ASIN</th>
+            <th>商品名</th>
+            <th>販売個数</th>
+            <th>売上</th>
+            <th>手数料</th>
+            <th>入金額</th>
+            <th>仕入れ</th>
+            <th>粗利益</th>
+            <th>送料</th>
+            <th>利益率</th>
+            <th>出荷</th>
+          </tr>
+        </thead>
+        <% @shipped_orders.each do |order| %>
+        <tbody>
+          <tr>
+            <td><%= order.created_at %></td>
+            <td><%= order.order_id %></td>
+            <td><%= order.country %></td>
+            <td><%= order.sku %></td>
+            <td><%= Asin.find_by(sku: order.sku).asin %></td>
+            <td><%= Asin.find_by(sku: order.sku).title %></td>
+            <td><%= order.volume %></td>
+            <td><%= order.sold_price %></td>
+            <td><%= order.fee %></td>
+            <td><%= order.sold_price.to_f+order.fee.to_f-order.shipfee.to_f %></td>
+            <td><%=  %></td>
+            <td><%= order.fee %></td>
+            <td><%=  order.shipfee %></td>
+            <td><%= order.fee %></td>
+            </tr>
+        </tbody>
+        <% end %>
+      </table>
+  　　</div>
+      </ol>
+    <% end %>

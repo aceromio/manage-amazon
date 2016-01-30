@@ -1,3 +1,57 @@
-<h1>
-  <%= @user.name %>
-</h1>
+<%= form_for(@order) do |f| %>
+  <%= f.label :how,"配送方法"%>
+  <%= f.select :how,options_for_select(['小型SAL','SAL','Pメール','Dメール','EMS'], @order.area), {}, { :class => 'form-control' } %>
+  <%= f.label :ship_fee %>
+  <p><%= f.text_area :ship_fee, class: 'form-control' %>円</p>
+　<%= f.submit "配送", class: "btn btn-large btn-primary" %>
+　<% if @user.orders.any? %>
+      <ol class="orders">
+      <div  class="tabele-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>日付</th>
+            <th>order_id</th>
+            <th>国</th>
+            <th>SKU</th>
+            <th>ASIN</th>
+            <th>商品名</th>
+            <th>販売個数</th>
+            <th>売上</th>
+            <th>手数料</th>
+            <th>入金額</th>
+            <th>仕入れ</th>
+            <th>粗利益</th>
+            <th>送料</th>
+            <th>利益率</th>
+            <th>出荷</th>
+          </tr>
+        </thead>
+        <% @orders.each do |order| %>
+        <tbody>
+          <tr>
+            <td><%= order.created_at %></td>
+            <td><%= order.order_id %></td>
+            <td><%= order.country %></td>
+            <td><%= order.sku %></td>
+            <td><%= Asin.find_by(sku: order.sku).asin %></td>
+            <td><%= Asin.find_by(sku: order.sku).title %></td>
+            <td><%= order.volume %></td>
+            <td><%= order.sold_price %></td>
+            <td><%= order.fee %></td>
+            <td><%= order.sold_price.to_f+order.fee.to_f %></td>
+            <td><%=  %></td>
+            <td><%= order.fee %></td>
+            <td><%=  %></td>
+            <td><%= order.fee %></td>
+            <td><input type="checkbox" /></td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+  　　</div>
+      </ol>
+    <% end %>
+  </div>
+</div>
+<% end %>

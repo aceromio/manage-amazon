@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   def show
-   @user = User.find(params[:id])
+    @user = User.find(params[:id])
+    @orders = @user.orders.order(created_at: :desc)
+    #@order = Order.find(params[:id])
   end
   def edit
    @user = User.find(params[:id])

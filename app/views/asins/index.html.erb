@@ -1,0 +1,37 @@
+<%= form_for(@asin) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_field :asin, placeholder: "ASINを入力してください" %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>
+      <ol class="asins">
+      <div  class="tabele-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ASIN</th>
+            <th>商品名</th>
+            <th>横</th>
+            <th>縦</th>
+            <th>高さ</th>
+            <th>重さ</th>
+            <th>JANコード</th>
+          </tr>
+        </thead>
+        <% @asins.each do |asin| %>
+        <tbody>
+          <tr>
+            <td><%= asin.asin %></td>
+            <td><%= asin.title %></td>
+            <td><%= asin.width%></td>
+            <td><%= asin.length %></td>
+            <td><%= asin.height %></td>
+            <td><%= asin.jan%></td>
+            <td><%#= link_to "edit" , edit_asin_path(asin) %></td>
+            </tr>
+        </tbody>
+        <% end %>
+      </table>
+  　　</div>
+      </ol>

@@ -1,0 +1,45 @@
+<p>
+  Download:
+  <%= link_to "Excel", skus_path(format: "xls") %>
+</p>
+<ol class="stocks">
+      <div  class="tabele-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>SKU</th>
+            <th>ASIN</th>
+            <th>商品名</th>
+            <th>UK</th>
+            <th>DE</th>
+            <th>FR</th>
+            <th>IT</th>
+            <th>ES</th>
+            <th>US</th>
+            <th>CA</th>
+            <th>MX</th>
+            <th>JP</th>
+            <th>仕入れ価格</th>
+          </tr>
+        </thead>
+        <% @skus.each do |stock| %>
+        <tbody>
+          <tr>
+            <td><%= stock.created_at %></td>
+            <td><%= stock.asin %></td>
+            <td><%#= Asin.find_by(asin: stock.asin).title%></td>
+            <td><%= stock.volume %></td>
+            <td><%= stock.price %></td>
+            <td><%= stock.shipfee%></td>
+            <td><%=  %></td>
+            <td><%=  %></td>
+            <td><%=  %></td>
+            <td><%=  %></td>
+            <td><%=  %></td>
+            </tr>
+        </tbody>
+        <% end %>
+      </table>
+  　　</div>
+</ol>
+

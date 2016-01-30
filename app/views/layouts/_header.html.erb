@@ -1,6 +1,6 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <%= link_to "ManageAmazon", current_user, id: "logo" %>
+    <%= link_to "ManageAmazon", orders_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
@@ -10,16 +10,17 @@
             </a>
           <ul class="dropdown-menu">
             <li><%= link_to "仕入れ最安検索", root_path %></li>
-            <li><%= link_to "在庫一覧", '#' %></li>
-            <li><%= link_to "売上未配送一覧", '#' %></li>
+            <li><%= link_to "在庫一覧", inventory_path(current_user) %></li>
+            <li><%= link_to "発注一覧", inventories_path %></li>
+            <li><%= link_to "売上未配送一覧", orders_path %></li>
           </ul>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               出品 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><%= link_to "ASIN登録パネル", current_user %></li>
-              <li><%= link_to "出品一覧", edit_user_path(current_user) %></li>
+              <li><%= link_to "ASIN登録パネル", asins_path %></li>
+              <li><%= link_to "出品一覧", skus_path %></li>
               <li class="divider"></li>
               <li>
                 <%= link_to "Log out", logout_path, method: "delete" %>

@@ -1,0 +1,62 @@
+<%= form_for(@stock) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_area :asin, placeholder: "ASINを入力してください" %>
+  </div>
+  <div class="field">
+    <%= f.number_field :volume, placeholder: "個数を入力してください" %>
+  </div>
+  <div class="field">
+    <%= f.number_field :price, placeholder: "1個当たりの価格を入力してください" %>
+  <div class="field">
+    <%= f.number_field :shipfee , placeholder: "送料を入力してください"%>
+  </div>
+  <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>
+<%= form_for :stocks, url: arrived_inventories_path, method: 'patch' do |f| %>
+　<%= f.submit "到着", class: "btn btn-large btn-primary" %>
+　<% if current_user.inventories.any? %>
+      <ol class="stocks">
+      <div  class="tabele-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>発注日</th>
+            <th>ASIN</th>
+            <th>商品名</th>
+            <th>発注数</th>
+            <th>仕入れ価格</th>
+            <th>送料</th>
+            <th>仕入れ先</th>
+            <th>前月推定販売個数</th>
+            <th>配送業者</th>
+            <th>追跡番号</th>
+            <th>予定到着日</th>
+            <th>更新</th>
+            <th>到着</th>
+          </tr>
+        </thead>
+        <% @stocks.each do |stock| %>
+        <tbody>
+          <tr>
+            <td><%= stock.created_at %></td>
+            <td><%= stock.asin %></td>
+            <td><%#= Asin.find_by(asin: stock.asin).title%></td>
+            <td><%= stock.volume %></td>
+            <td><%= stock.price %></td>
+            <td><%= stock.shipfee%></td>
+            <td><%=  %></td>
+            <td><%=  %></td>
+            <td><%=  %></td>
+            <td><%=  %></td>
+            <td><%=  %></td>
+            <td><%= link_to "edit" , edit_inventory_path(stock) %></td>
+            <td><%= check_box_tag "stock_ids[]" %></td>
+            </tr>
+        </tbody>
+        <% end %>
+      </table>
+  　　</div>
+      </ol>
+    <% end %>
+<% end %>

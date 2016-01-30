@@ -1,0 +1,15 @@
+<%= form_for(@stock) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_area :asin, placeholder: "ASINを入力してください" %>
+  </div>
+  <div class="field">
+    <%= f.number_field :volume, placeholder: "個数を入力してください" %>
+  </div>
+  <div class="field">
+    <%= f.number_field :price, placeholder: "1個当たりの価格を入力してください" %>
+  <div class="field">
+    <%= f.number_field :shipfee , placeholder: "送料を入力してください"%>
+  </div>
+ <%= f.submit "Post", class: "btn btn-primary" %>
+ <% end %>
