@@ -15,7 +15,10 @@ Rails.application.routes.draw do
     patch 'update_all', on: :collection
   end
   resources :inventories do
-    patch 'arrived', on: :collection
+    collection do
+      patch 'arrived'
+      get 'arrived_list'
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

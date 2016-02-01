@@ -22,9 +22,6 @@ class InventoriesController < ApplicationController
       render 'edit'
     end
   end
-  def show
-    @arrived_stocks = current_user.inventories.where.not(arrived: nil).order(created_at: :desc)
-  end
   def arrived
     @stocks = Inventory.find(params[:stock_ids])
       @stocks.each do |stock|
@@ -32,7 +29,12 @@ class InventoriesController < ApplicationController
       end
       #render inventory_path(current_user)
   end
-    private
+  
+  def arrived_list
+      @stocks = current_user.inventories.where.not(arrived: nil).order(created_at: :desc)
+      render 'index'
+  end
+      private
   def stock_params
     params.require(:inventory).permit(:jan, :volume,:total_price,:asin,:shipfee,:price)
   end
