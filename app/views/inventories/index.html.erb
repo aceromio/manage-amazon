@@ -51,7 +51,7 @@
             <td><%=  %></td>
             <td><%=  %></td>
             <td><%= link_to "edit" , edit_inventory_path(stock) %></td>
-            <td><%= check_box_tag "stock_ids[]" %></td>
+            <td><%= check_box_tag "stock_ids[]",stock.id %></td>
             </tr>
         </tbody>
         <% end %>

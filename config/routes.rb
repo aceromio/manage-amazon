@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'lowests/index'
+
   get 'skus/index'
 
   root to: 'sessions#new'
@@ -11,6 +13,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :asins
   resources :skus
+  resources :lowests
   resources :orders do
     patch 'update_all', on: :collection
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160130082738) do
+ActiveRecord::Schema.define(version: 20160201094144) do
 
   create_table "add_shipfee_to_orders", force: :cascade do |t|
     t.string   "shipfee"
@@ -30,9 +30,11 @@ ActiveRecord::Schema.define(version: 20160130082738) do
     t.datetime "updated_at", null: false
     t.string   "sku"
     t.string   "title"
+    t.integer  "user_id"
   end
 
   add_index "asins", ["asin"], name: "index_asins_on_asin", unique: true
+  add_index "asins", ["user_id"], name: "index_asins_on_user_id"
 
   create_table "inventories", force: :cascade do |t|
     t.integer  "volume"
@@ -49,6 +51,21 @@ ActiveRecord::Schema.define(version: 20160130082738) do
   end
 
   add_index "inventories", ["user_id"], name: "index_inventories_on_user_id"
+
+  create_table "lowests", force: :cascade do |t|
+    t.string   "asin"
+    t.string   "jan"
+    t.string   "amazon"
+    t.string   "yodobashi"
+    t.string   "rakuten"
+    t.string   "kakaku"
+    t.string   "yahoo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+  end
+
+  add_index "lowests", ["user_id"], name: "index_lowests_on_user_id"
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"

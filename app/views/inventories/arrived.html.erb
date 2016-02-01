@@ -17,7 +17,8 @@
             <th>予定到着日</th>
           </tr>
         </thead>
-        <% @arrived_stocks.each do |stock| %>
+
+        <% @stocks.each do |stock| %>
         <tbody>
           <tr>
             <td><%= stock.created_at %></td>

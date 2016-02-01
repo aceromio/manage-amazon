@@ -24,6 +24,7 @@ class InventoriesController < ApplicationController
   end
   def arrived
     @stocks = Inventory.find(params[:stock_ids])
+    #Sbinding.pry
       @stocks.each do |stock|
         stock.update_attribute(:arrived,1)
       end
@@ -32,7 +33,7 @@ class InventoriesController < ApplicationController
   
   def arrived_list
       @stocks = current_user.inventories.where.not(arrived: nil).order(created_at: :desc)
-      render 'index'
+      render 'arrived'
   end
       private
   def stock_params

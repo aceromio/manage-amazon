@@ -17,6 +17,7 @@
             <th>高さ</th>
             <th>重さ</th>
             <th>JANコード</th>
+            <th></th>
           </tr>
         </thead>
         <% @asins.each do |asin| %>
@@ -27,8 +28,9 @@
             <td><%= asin.width%></td>
             <td><%= asin.length %></td>
             <td><%= asin.height %></td>
+            <td><%= asin.weight %></td>
             <td><%= asin.jan%></td>
-            <td><%#= link_to "edit" , edit_asin_path(asin) %></td>
+            <td><%= link_to "edit" , edit_asin_path(asin) %></td>
             </tr>
         </tbody>
         <% end %>

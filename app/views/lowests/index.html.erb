@@ -1,0 +1,45 @@
+<%= form_for(@lowest) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_field :asin, placeholder: "最安を検索したいASINを入力してください" %>
+  </div>
+  <%= f.submit "検索", class: "btn btn-primary" %>
+<% end %>
+<div  class="tabele-responsive">
+    <table class="table">
+        <thead>
+          <tr>
+            <th>ASIN</th>
+            <th>商品名</th>
+            <th>amazon</th>
+            <th>yodobashi</th>
+            <th>Rakuten</th>
+            <th>yahoo!</th>
+            <th>kakaku.com</th>
+            <th>ES</th>
+            <th>US</th>
+            <th>CA</th>
+            <th>MX</th>
+            <th>JP</th>
+            <th>仕入れ価格</th>
+          </tr>
+        </thead>
+        <% @lowests.each do |lowest| %>
+        <tbody>
+          <tr>
+            <td><%= lowest.created_at %></td>
+            <td><%= Asin.find_by(asin: lowest.asin).title %></td>
+            <td><%= lowest.amazon %></td>
+            <td><%= %></td>
+            <td><%=  %></td>
+            <td><%= %></td>
+            <td><%=  %></td>
+            <td><%=  %></td>
+            <td><%=  %></td>
+            <td><%=  %></td>
+            <td><%=  %></td>
+          </tr>
+       </tbody>
+       <% end %>
+　　</table>
+</div>

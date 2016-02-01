@@ -10,4 +10,6 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :orders
   has_many :inventories
+  has_many :asins
+  has_many :lowests
 end

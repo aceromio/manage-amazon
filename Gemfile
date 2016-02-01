@@ -32,7 +32,7 @@ gem 'money'
 gem 'nokogiri'
 gem 'axlsx'
 gem 'zip-zip'
-gem 'rubyzip', '= 1.1.0'
+gem 'rubyzip'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

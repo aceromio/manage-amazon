@@ -1,0 +1,21 @@
+<%= form_for(@asin) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_area :asin, placeholder: "ASINを入力してください" %>
+  </div>
+  <div class="field">
+    <%= f.number_field :width, placeholder: "横の長さを入力してください" %>
+  </div>
+  <div class="field">
+    <%= f.number_field :length, placeholder: "縦の長さの価格を入力してください" %>
+  <div class="field">
+    <%= f.number_field :height , placeholder: "高さを入力してください"%>
+  </div>
+  <div class="field">
+    <%= f.number_field :weight , placeholder: "重さを入力してください"%>
+  </div>
+  <div class="field">
+    <%= f.number_field :jan , placeholder: "janを入力してください"%>
+  </div>
+ <%= f.submit "Post", class: "btn btn-primary" %>
+ <% end %>
